@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /static/admin/
+Disallow: /media/
+Disallow: /search/
+
+# Sitemaps
+Sitemap: https://najmat.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Request rate
+Request-rate: 1/1s

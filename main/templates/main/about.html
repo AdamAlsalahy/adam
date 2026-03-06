@@ -1,0 +1,197 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}من نحن - مؤسسة نجمة الإبداع{% endblock %}
+
+{% block meta_description %}تعرف على مؤسسة نجمة الإبداع، متخصصة في تركيب وتوريد زجاج السكريت بأعلى جودة واحترافية.{%
+endblock %}
+
+{% block content %}
+
+<!-- قسم البطل -->
+<div class="hero-section">
+    <div class="container">
+        <h1 class="text-yellow fw-bold mb-4">من نحن</h1>
+        <p class="lead fs-3">نجمة الإبداع - رائدة في صناعة الزجاج السكريت</p>
+    </div>
+</div>
+
+<!-- قسم المعلومات الأساسية -->
+<div class="section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                <h2 class="text-yellow fw-bold mb-4">عن مؤسسة نجمة الإبداع</h2>
+                <p class="mb-3">
+                    مؤسسة نجمة الإبداع هي شركة متخصصة في تركيب وتوريد جميع أنواع زجاج السكريت بأعلى معايير الجودة
+                    والاحترافية.
+                    نحن نخدم العملاء في منطقة عسير وما حولها منذ أكثر من 15 سنة.
+                </p>
+                <p class="mb-3">
+                    فريقنا المتخصص يضم خبراء في مجال الزجاج والتركيب، مما يضمن تقديم أفضل الحلول المخصصة لاحتياجات كل
+                    عميل.
+                </p>
+                <p class="mb-3">
+                    نلتزم بتقديم خدمة عملاء متميزة وضمان جودة عالية في جميع مشاريعنا، سواء كانت سكنية أو تجارية.
+                </p>
+                <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+                    class="btn btn-yellow btn-lg px-5 py-3">
+                    <i class="fab fa-whatsapp me-2"></i> تواصل معنا
+                </a>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                {% if site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="مؤسسة نجمة الإبداع" class="img-fluid"
+                    style="max-width: 400px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));">
+                {% else %}
+                <img src="{% static 'logo.png' %}" alt="مؤسسة نجمة الإبداع" class="img-fluid"
+                    style="max-width: 400px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم القيم والرؤية -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">قيمنا ورؤيتنا</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                <div class="service-box">
+                    <i class="fas fa-target" style="color: var(--main-yellow);"></i>
+                    <h4>رؤيتنا</h4>
+                    <p>أن نكون الخيار الأول والموثوق في مجال تركيب وتوريد الزجاج السكريت في المنطقة.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-box">
+                    <i class="fas fa-heart" style="color: var(--main-yellow);"></i>
+                    <h4>قيمنا</h4>
+                    <p>الجودة والاحترافية والأمانة والالتزام برضا العميل هي أساس عملنا.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-box">
+                    <i class="fas fa-lightbulb" style="color: var(--main-yellow);"></i>
+                    <h4>رسالتنا</h4>
+                    <p>تقديم حلول زجاج مبتكرة وآمنة وعملية تلبي احتياجات عملائنا بأفضل سعر.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم المميزات -->
+<div class="section">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">لماذا تختار نجمة الإبداع؟</h2>
+        <div class="row">
+            <div class="col-lg-6 mb-4" data-aos="fade-up">
+                <div class="d-flex mb-4">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">خبرة عملية طويلة</h5>
+                        <p>أكثر من 15 سنة من الخبرة في مجال الزجاج والتركيب.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="d-flex mb-4">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">فريق متخصص</h5>
+                        <p>فريق من الخبراء المدربين على أعلى مستويات الاحترافية.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="d-flex mb-4">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">جودة عالية</h5>
+                        <p>نستخدم أفضل المواد والمعدات لضمان جودة عالية.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="d-flex mb-4">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">أسعار تنافسية</h5>
+                        <p>نقدم أفضل الأسعار دون التضحية بالجودة.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="d-flex mb-4">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">خدمة عملاء متميزة</h5>
+                        <p>نلتزم برضا العميل وتقديم خدمة متميزة قبل وبعد البيع.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="d-flex mb-4">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">ضمان شامل</h5>
+                        <p>جميع منتجاتنا مضمونة ضد العيوب الصناعية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم الخدمات -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">خدماتنا</h2>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="service-box">
+                    <i class="fas fa-check"></i>
+                    <h4>{{ service.title }}</h4>
+                    <p>{{ service.description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">سيتم إضافة الخدمات قريباً...</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- قسم الدعوة للعمل -->
+<div class="section">
+    <div class="container text-center">
+        <h2 class="section-title text-yellow mb-5">هل تريد معرفة المزيد؟</h2>
+        <p class="fs-5 mb-5" style="color: #ddd;">تواصل معنا اليوم واحصل على استشارة مجانية</p>
+        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+            class="btn btn-yellow btn-lg px-5 py-3 fs-5 me-3">
+            <i class="fab fa-whatsapp me-2"></i> واتساب
+        </a>
+        <a href="{% url 'main:contact' %}" class="btn btn-outline-warning btn-lg px-5 py-3 fs-5">
+            <i class="fas fa-envelope me-2"></i> نموذج التواصل
+        </a>
+    </div>
+</div>
+
+{% endblock %}

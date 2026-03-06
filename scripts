@@ -1,0 +1,25 @@
+import os
+import sys
+import django
+
+# Add project root to sys.path
+project_root = os.path.dirname(os.path.abspath(__file__))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+# Set up Django environment
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+django.setup()
+
+from main.models import SiteSettings
+
+settings, created = SiteSettings.objects.get_or_create(pk=1)
+
+# Using the coordinates provided by the user: 18.320165, 42.684401
+# Constructing a standard Google Maps Embed URL for these coordinates
+map_url = "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3756.036!2d42.684401!3d18.320165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDE5JzEyLjYiTiA0MsKwNDEnMDMuOCJF!5e0!3m2!1sar!2ssa!4v1710000000000"
+
+settings.map_iframe_url = map_url
+settings.save()
+
+print(f"Successfully updated map URL to coordinates: 18.320165, 42.684401")

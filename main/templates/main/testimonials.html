@@ -1,0 +1,168 @@
+{% extends 'main/base.html' %}
+
+{% block title %}تقييمات عملائنا - مؤسسة نجمة الإبداع{% endblock %}
+
+{% block meta_description %}اقرأ تقييمات عملائنا الراضين عن خدماتنا وجودة أعمالنا.{% endblock %}
+
+{% block content %}
+
+<!-- قسم البطل -->
+<div class="hero-section">
+    <div class="container">
+        <h1 class="text-yellow fw-bold mb-4">تقييمات عملائنا</h1>
+        <p class="lead fs-3">آراء عملائنا الراضين</p>
+    </div>
+</div>
+
+<!-- قسم التقييمات -->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            {% for testimonial in testimonials %}
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="testimonial-box" style="height: 100%;">
+                    <div class="stars mb-3">
+                        {% for i in "x"|rjust:testimonial.rating %}
+                        <i class="fas fa-star"></i>
+                        {% endfor %}
+                    </div>
+                    <p class="mb-4" style="font-size: 0.95rem; line-height: 1.8;">
+                        "{{ testimonial.message }}"
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>{{ testimonial.client_name }}</strong>
+                        {% if testimonial.client_company %}
+                        <br><small class="text-muted">{{ testimonial.client_company }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="fas fa-comments"
+                        style="font-size: 4rem; color: var(--main-yellow); margin-bottom: 20px; display: block;"></i>
+                    <p class="text-muted fs-5">لم يتم إضافة تقييمات بعد</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- قسم الإحصائيات -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">رضا العملاء</h2>
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">+1000</h3>
+                <p>عميل راضي</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">+1000</h3>
+                <p>مشروع منجز</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">100%</h3>
+                <p>نسبة الرضا</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">15+</h3>
+                <p>سنة خبرة</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم المميزات -->
+<div class="section">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">لماذا يختارنا العملاء؟</h2>
+        <div class="row">
+            <div class="col-lg-6 mb-4" data-aos="fade-up">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">جودة عالية</h5>
+                        <p>نستخدم أفضل المواد والمعدات لضمان جودة عالية.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">فريق متخصص</h5>
+                        <p>فريق من الخبراء المدربين على أعلى مستويات الاحترافية.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">أسعار تنافسية</h5>
+                        <p>نقدم أفضل الأسعار دون التضحية بالجودة.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">خدمة عملاء متميزة</h5>
+                        <p>نلتزم برضا العميل وتقديم خدمة متميزة قبل وبعد البيع.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">ضمان شامل</h5>
+                        <p>جميع منتجاتنا مضمونة ضد العيوب الصناعية.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-check-circle text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">التزام بالمواعيد</h5>
+                        <p>نلتزم بتسليم المشاريع في الوقت المحدد.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم الدعوة للعمل -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container text-center">
+        <h2 class="section-title text-yellow mb-5">هل تريد أن تكون من عملائنا الراضين؟</h2>
+        <p class="fs-5 mb-5" style="color: #ddd;">تواصل معنا اليوم واحصل على استشارة مجانية</p>
+        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+            class="btn btn-yellow btn-lg px-5 py-3 fs-5 me-3">
+            <i class="fab fa-whatsapp me-2"></i> واتساب
+        </a>
+        <a href="{% url 'main:contact' %}" class="btn btn-outline-warning btn-lg px-5 py-3 fs-5">
+            <i class="fas fa-envelope me-2"></i> نموذج التواصل
+        </a>
+    </div>
+</div>
+
+{% endblock %}

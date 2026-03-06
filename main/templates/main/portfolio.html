@@ -1,0 +1,151 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}أعمالنا - مؤسسة نجمة الإبداع{% endblock %}
+
+{% block meta_description %}شاهد نماذج من أعمالنا وإنجازاتنا في مجال تركيب الزجاج السكريت.{% endblock %}
+
+{% block content %}
+
+<!-- قسم البطل -->
+<div class="hero-section">
+    <div class="container">
+        <h1 class="text-yellow fw-bold mb-4">أعمالنا</h1>
+        <p class="lead fs-3">نماذج من مشاريعنا الناجحة</p>
+    </div>
+</div>
+
+<!-- قسم التصفية والمعرض -->
+<div class="section">
+    <div class="container">
+        <!-- فلاتر الفئات -->
+        {% if categories %}
+        <div class="text-center mb-5" data-aos="fade-up">
+            <a href="{% url 'main:portfolio' %}"
+                class="btn btn-sm {% if not selected_category %}btn-yellow{% else %}btn-outline-warning{% endif %} me-2 mb-2">
+                جميع الأعمال
+            </a>
+            {% for category in categories %}
+            {% if category %}
+            <a href="?category={{ category }}"
+                class="btn btn-sm {% if selected_category == category %}btn-yellow{% else %}btn-outline-warning{% endif %} me-2 mb-2">
+                {{ category }}
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- شبكة الأعمال -->
+        <div class="row">
+            {% for item in portfolios %}
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="portfolio-box">
+                    <div style="position: relative; overflow: hidden;">
+                        {% if item.video %}
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}"
+                            style="width: 100%; height: 250px; object-fit: cover;" loading="lazy">
+                        {% else %}
+                        <img src="/media/portfolio/images/video_poster_1.png" alt="{{ item.title }}"
+                            style="width: 100%; height: 250px; object-fit: cover;" loading="lazy">
+                        {% endif %}
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: 0.3s ease;"
+                            class="video-overlay">
+                            <a href="{{ item.video.url }}" target="_blank"
+                                style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background-color: var(--main-yellow); border-radius: 50%; text-decoration: none; transition: 0.3s ease;"
+                                class="play-button" aria-label="شغل الفيديو">
+                                <i class="fas fa-play"
+                                    style="color: var(--main-black); font-size: 24px; margin-right: 4px;"></i>
+                            </a>
+                        </div>
+                        {% elif item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}"
+                            style="width: 100%; height: 250px; object-fit: cover;" loading="lazy">
+                        {% else %}
+                        <div
+                            style="width: 100%; height: 250px; background-color: var(--light-gray); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-image" style="font-size: 3rem; color: var(--main-yellow);"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="content">
+                        {% if item.title %}
+                        <h5 class="text-yellow fw-bold">{{ item.title }}</h5>
+                        {% endif %}
+                        {% if item.category %}
+                        <p class="text-muted small mb-2">{{ item.category }}</p>
+                        {% endif %}
+                        {% if item.description %}
+                        <p class="text-muted small mb-3">{{ item.description|truncatewords:20 }}</p>
+                        {% endif %}
+                        <div>
+                            {% if item.video %}
+                            <a href="{{ item.video.url }}" target="_blank" class="btn btn-sm btn-outline-warning me-2">
+                                <i class="fas fa-play"></i> فيديو
+                            </a>
+                            {% endif %}
+                            <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+                                class="btn btn-sm btn-yellow">
+                                <i class="fab fa-whatsapp"></i> استفسر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="fas fa-images"
+                        style="font-size: 4rem; color: var(--main-yellow); margin-bottom: 20px; display: block;"></i>
+                    <p class="text-muted fs-5">لم يتم العثور على أعمال في هذه الفئة</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- قسم الإحصائيات -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">إحصائياتنا</h2>
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">{{ portfolios|length }}+</h3>
+                <p>مشروع منجز</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">100+</h3>
+                <p>عميل راضي</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">15+</h3>
+                <p>سنة خبرة</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">100%</h3>
+                <p>رضا العملاء</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم الدعوة للعمل -->
+<div class="section">
+    <div class="container text-center">
+        <h2 class="section-title text-yellow mb-5">هل أعجبتك أعمالنا؟</h2>
+        <p class="fs-5 mb-5" style="color: #ddd;">تواصل معنا اليوم لتحويل مشروعك إلى واقع</p>
+        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+            class="btn btn-yellow btn-lg px-5 py-3 fs-5 me-3">
+            <i class="fab fa-whatsapp me-2"></i> واتساب
+        </a>
+        <a href="{% url 'main:contact' %}" class="btn btn-outline-warning btn-lg px-5 py-3 fs-5">
+            <i class="fas fa-envelope me-2"></i> نموذج التواصل
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

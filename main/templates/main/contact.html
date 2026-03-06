@@ -1,0 +1,227 @@
+{% extends 'main/base.html' %}
+
+{% block title %}تواصل معنا - مؤسسة نجمة الإبداع{% endblock %}
+
+{% block meta_description %}تواصل معنا عبر نموذج الاتصال أو الواتساب أو الهاتف. نحن هنا للإجابة على جميع استفساراتك.{% endblock %}
+
+{% block content %}
+
+<!-- قسم البطل -->
+<div class="hero-section">
+    <div class="container">
+        <h1 class="text-yellow fw-bold mb-4">تواصل معنا</h1>
+        <p class="lead fs-3">نحن هنا لمساعدتك</p>
+    </div>
+</div>
+
+<!-- قسم التواصل -->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <!-- معلومات التواصل -->
+            <div class="col-lg-4 mb-4 mb-lg-0" data-aos="fade-right">
+                <h3 class="text-yellow fw-bold mb-4">معلومات التواصل</h3>
+
+                <div class="mb-4">
+                    <h5 class="text-yellow fw-bold mb-2">
+                        <i class="fas fa-phone-alt me-2"></i> الهاتف
+                    </h5>
+                    <p>
+                        <a href="tel:{{ site_settings.phone }}" class="text-decoration-none" style="color: #ddd;">
+                            {{ site_settings.phone }}
+                        </a>
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-yellow fw-bold mb-2">
+                        <i class="fab fa-whatsapp me-2"></i> واتساب
+                    </h5>
+                    <p>
+                        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+                            class="text-decoration-none" style="color: #ddd;">
+                            {{ site_settings.whatsapp }}
+                        </a>
+                    </p>
+                </div>
+
+                {% if site_settings.email %}
+                <div class="mb-4">
+                    <h5 class="text-yellow fw-bold mb-2">
+                        <i class="fas fa-envelope me-2"></i> البريد الإلكتروني
+                    </h5>
+                    <p>
+                        <a href="mailto:{{ site_settings.email }}" class="text-decoration-none" style="color: #ddd;">
+                            {{ site_settings.email }}
+                        </a>
+                    </p>
+                </div>
+                {% endif %}
+
+                <div class="mb-4">
+                    <h5 class="text-yellow fw-bold mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i> العنوان
+                    </h5>
+                    <p>{{ site_settings.address }}</p>
+                </div>
+
+                <!-- وسائل التواصل الاجتماعية -->
+                <h5 class="text-yellow fw-bold mb-3">تابعنا على وسائل التواصل</h5>
+                <div class="social-icons">
+                    {% if site_settings.facebook %}
+                    <a href="{{ site_settings.facebook }}" target="_blank" title="فيسبوك">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    {% endif %}
+                    {% if site_settings.instagram %}
+                    <a href="{{ site_settings.instagram }}" target="_blank" title="إنستجرام">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    {% endif %}
+                    {% if site_settings.twitter %}
+                    <a href="{{ site_settings.twitter }}" target="_blank" title="تويتر">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    {% endif %}
+                    <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank" title="واتساب">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- نموذج الاتصال -->
+            <div class="col-lg-8" data-aos="fade-left">
+                <h3 class="text-yellow fw-bold mb-4">أرسل لنا رسالة</h3>
+
+                <form method="POST" class="contact-form">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="name" class="form-label text-yellow fw-bold">الاسم الكامل *</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label text-yellow fw-bold">البريد الإلكتروني *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label text-yellow fw-bold">رقم الهاتف *</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="subject" class="form-label text-yellow fw-bold">الموضوع *</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message" class="form-label text-yellow fw-bold">الرسالة *</label>
+                        <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-yellow btn-lg px-5 py-3">
+                        <i class="fas fa-paper-plane me-2"></i> إرسال الرسالة
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم الخريطة -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">موقعنا على الخريطة</h2>
+        <div
+            style="width: 100%; height: 400px; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+            {% if site_settings.map_iframe_url %}
+            <iframe src="{{ site_settings.map_iframe_url }}" width="100%" height="100%" style="border:0;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            {% else %}
+            <div class="d-flex align-items-center justify-content-center h-100 bg-light text-dark">
+                <p>يرجى إضافة رابط الخريطة من لوحة التحكم</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- قسم الأسئلة الشائعة -->
+<div class="section">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">أسئلة شائعة</h2>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item"
+                        style="background-color: var(--dark-gray); border-color: var(--main-yellow);">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq1"
+                                style="background-color: var(--dark-gray); color: var(--main-yellow); font-weight: bold;">
+                                كم الوقت المستغرق للرد على الرسائل؟
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body" style="background-color: var(--light-gray);">
+                                نحن نرد على جميع الرسائل خلال 24 ساعة على الأقل. للاستفسارات العاجلة، يرجى التواصل معنا
+                                عبر الواتساب.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item"
+                        style="background-color: var(--dark-gray); border-color: var(--main-yellow); margin-top: 10px;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq2"
+                                style="background-color: var(--dark-gray); color: var(--main-yellow); font-weight: bold;">
+                                هل تقدمون استشارات مجانية؟
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body" style="background-color: var(--light-gray);">
+                                نعم، نقدم استشارات تصميمية مجانية من قبل خبرائنا. تواصل معنا لحجز موعد.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item"
+                        style="background-color: var(--dark-gray); border-color: var(--main-yellow); margin-top: 10px;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq3"
+                                style="background-color: var(--dark-gray); color: var(--main-yellow); font-weight: bold;">
+                                هل تعملون في أيام العطل الرسمية؟
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body" style="background-color: var(--light-gray);">
+                                نعم، نعمل طوال أيام الأسبوع. يمكنك التواصل معنا في أي وقت.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم الدعوة للعمل -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container text-center">
+        <h2 class="section-title text-yellow mb-5">نحن بانتظارك</h2>
+        <p class="fs-5 mb-5" style="color: #ddd;">اختر الطريقة التي تناسبك للتواصل معنا</p>
+        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+            class="btn btn-yellow btn-lg px-5 py-3 fs-5 me-3">
+            <i class="fab fa-whatsapp me-2"></i> واتساب
+        </a>
+        <a href="tel:{{ site_settings.phone }}" class="btn btn-outline-warning btn-lg px-5 py-3 fs-5">
+            <i class="fas fa-phone-alt me-2"></i> اتصل بنا
+        </a>
+    </div>
+</div>
+
+{% endblock %}

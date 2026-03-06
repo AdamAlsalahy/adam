@@ -13,3 +13,12 @@ services:
         generateValue: true
       - key: ALLOWED_HOSTS
         value: "*"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: najmat-alibdaa-db
+          property: connectionString
+
+databases:
+  - name: najmat-alibdaa-db
+    databaseName: najmat_alibdaa
+    user: najmat_user

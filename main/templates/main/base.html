@@ -1,0 +1,810 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="{% block meta_description %}نجمة الإبداع - أفضل مؤسسة زجاج في السعودية وقميس مشيط. متخصصون في تركيب زجاج سكريت، واجهات زجاجية، وسواتر بأعلى جودة.{% endblock %}">
+    <meta name="keywords"
+        content="زجاج السعودية, زجاج خميس مشيط, زجاج سكريت, واجهات زجاج, تركيب زجاج, سواتر زجاج, شركة زجاج السعودية">
+    <meta name="author" content="مؤسسة نجمة الإبداع">
+
+    <!-- Schema.org JSON-LD for LocalBusiness SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "مؤسسة نجمة الإبداع لزجاج السكريت",
+      "image": "{% static 'logo.png' %}",
+      "@id": "https://najmat.com",
+      "url": "https://najmat.com",
+      "telephone": "{{ site_settings.phone }}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "حي الحسام",
+        "addressLocality": "خميس مشيط",
+        "addressRegion": "منطقة عسير",
+        "postalCode": "",
+        "addressCountry": "SA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.320165,
+        "longitude": 42.684401
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Saturday",
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "sameAs": [
+        "{{ site_settings.facebook }}",
+        "{{ site_settings.instagram }}",
+        "{{ site_settings.twitter }}"
+      ]
+    }
+    </script>
+
+    <!-- Open Graph Meta Tags لتحسين المشاركة على وسائل التواصل -->
+    <meta property="og:title" content="{% block og_title %}مؤسسة نجمة الإبداع لزجاج السكريت - السعودية{% endblock %}">
+    <meta property="og:description"
+        content="{% block og_description %}تركيب وتوريد جميع أنواع زجاج السكريت والواجهات في خميس مشيط وجميع مناطق المملكة.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://najmat.com/">
+
+    <title>{% block title %}نجمة الإبداع | زجاج السعودية | زجاج خميس مشيط{% endblock %}</title>
+
+    <!-- خطوط جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- بوتستراب -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- مكتبة الأيقونات (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS - Animate On Scroll -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+    <style>
+        :root {
+            --main-black: #111111;
+            --main-yellow: #FFD700;
+            --dark-gray: #222222;
+            --light-gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--main-black);
+            color: #ffffff;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        /* القائمة العلوية Navbar */
+        .navbar {
+            background-color: rgba(34, 34, 34, 0.95);
+            /* Semi-transparent for premium feel */
+            backdrop-filter: blur(10px);
+            /* Glassmorphism */
+            border-bottom: 2px solid var(--main-yellow);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            padding: 12px 0;
+            /* More breathing room */
+            z-index: 1030;
+        }
+
+        .navbar-brand .logo-img {
+            width: 80px;
+            /* Refined size for better balance */
+            height: 80px !important;
+            object-fit: contain;
+            /* Ensure full logo is visible */
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: block;
+            border-radius: 50%;
+            /* Pure circle */
+            border: 2px solid var(--main-yellow);
+            /* Gold border */
+            background: #000;
+            /* Matching logo background */
+            padding: 8px;
+            /* Space between logo and border */
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            animation: logo-pulse 3s infinite ease-in-out;
+            will-change: transform, box-shadow;
+        }
+
+        @keyframes logo-pulse {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            }
+
+            100% {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        .navbar-brand:hover .logo-img {
+            transform: scale(1.1) rotate(3deg);
+            border-color: #fff;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.7);
+            filter: brightness(1.1);
+        }
+
+        /* Navbar Brand Container */
+        .navbar-brand {
+            padding: 0 !important;
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: 0.3s ease;
+            margin: 0 10px;
+            position: relative;
+            padding: 8px 0 !important;
+        }
+
+        .nav-link:hover {
+            color: var(--main-yellow) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--main-yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* الألوان والأزرار */
+        .text-yellow {
+            color: var(--main-yellow);
+        }
+
+        .bg-yellow {
+            background-color: var(--main-yellow);
+            color: var(--main-black);
+        }
+
+        .btn-yellow {
+            background-color: var(--main-yellow);
+            color: var(--main-black);
+            font-weight: bold;
+            border: none;
+            transition: 0.3s ease;
+        }
+
+        .btn-yellow:hover {
+            background-color: #e6c200;
+            color: var(--main-black);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* قسم البطل (Hero Section) */
+        .hero-section {
+            position: relative;
+            padding: 160px 0 120px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url('{% static "images/hero-bg.png" %}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .hero-section p {
+            font-size: 1.6rem;
+            margin-bottom: 40px;
+            color: #efefef;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* تصميم كروت الخدمات */
+        .service-box {
+            background-color: var(--dark-gray);
+            border: 2px solid var(--main-yellow);
+            border-radius: 12px;
+            padding: 30px 20px;
+            margin-bottom: 25px;
+            height: 100%;
+            transition: 0.4s ease;
+            text-align: center;
+        }
+
+        .service-box:hover {
+            background-color: var(--main-yellow);
+            color: var(--main-black);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .service-box i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .service-box h4 {
+            font-weight: 900;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .service-box p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* تصميم كروت الأعمال */
+        .portfolio-box {
+            background-color: var(--dark-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 1px solid var(--light-gray);
+            transition: 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .portfolio-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: 0.4s ease;
+        }
+
+        .portfolio-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-box .content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .video-overlay {
+            opacity: 0.8;
+            transition: 0.3s ease;
+        }
+
+        .portfolio-box:hover .video-overlay {
+            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .play-button {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background-color: #ffffff !important;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        /* تصميم كروت التقييمات */
+        .testimonial-box {
+            background-color: var(--dark-gray);
+            border: 1px solid var(--light-gray);
+            border-top: 4px solid var(--main-yellow);
+            border-radius: 12px;
+            padding: 35px 25px;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-box::before {
+            content: '\"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(255, 215, 0, 0.05);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-box:hover {
+            transform: translateY(-10px);
+            border-color: var(--main-yellow);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1);
+        }
+
+        .stars {
+            color: var(--main-yellow);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-author {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        /* الفوتر */
+        .footer {
+            background-color: var(--dark-gray);
+            border-top: 2px solid var(--main-yellow);
+            padding: 40px 0 20px 0;
+            margin-top: 60px;
+        }
+
+        .footer-section h5 {
+            color: var(--main-yellow);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--main-yellow);
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--main-yellow);
+            color: var(--main-black);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin: 5px;
+            transition: 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* زر الواتساب العائم */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* رسائل النجاح والخطأ */
+        .alert {
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background-color: rgba(37, 211, 102, 0.2);
+            border-color: #25d366;
+            color: #25d366;
+        }
+
+        .alert-danger {
+            background-color: rgba(255, 0, 0, 0.2);
+            border-color: #ff0000;
+            color: #ff6b6b;
+        }
+
+        /* الأقسام */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--main-yellow);
+        }
+
+        /* نموذج الاتصال */
+        .form-control {
+            background-color: var(--light-gray);
+            border: 1px solid var(--main-yellow);
+            color: #fff;
+            border-radius: 8px;
+            padding: 12px 15px;
+            transition: 0.3s ease;
+        }
+
+        .form-control:focus {
+            background-color: var(--light-gray);
+            border-color: var(--main-yellow);
+            color: #fff;
+            box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        /* تحسينات الـ Navbar للجوال */
+        .navbar-toggler {
+            border: 2px solid var(--main-yellow);
+            padding: 8px 10px;
+            border-radius: 8px;
+            transition: 0.3s ease;
+            background-color: var(--main-yellow) !important;
+        }
+
+        .navbar-toggler-icon {
+            filter: brightness(0);
+            /* Make icon black on yellow background */
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.4);
+        }
+
+        .navbar-toggler:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-collapse {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: var(--dark-gray);
+                margin-top: 15px;
+                padding: 20px;
+                border-radius: 12px;
+                border: 1px solid var(--light-gray);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-link {
+                padding: 12px 15px !important;
+                border-radius: 8px;
+                margin: 5px 0;
+            }
+
+            .nav-link:hover {
+                background-color: rgba(255, 215, 0, 0.1);
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar-brand .logo-img {
+                width: 80px;
+                height: 80px !important;
+            }
+
+            .hero-section {
+                padding: 140px 0 100px 0;
+            }
+
+            .hero-section h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand .logo-img {
+                width: 75px;
+                height: 75px !important;
+            }
+
+            .navbar {
+                padding: 12px 0;
+            }
+
+            .hero-section {
+                padding: 120px 0 80px 0;
+                background-attachment: scroll;
+                /* Better performance on mobile */
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-box {
+                padding: 25px 15px;
+                margin-bottom: 20px;
+            }
+
+            .portfolio-box img {
+                height: 220px;
+            }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 30px;
+                right: 30px;
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand .logo-img {
+                width: 70px;
+                height: 70px !important;
+            }
+
+            .navbar {
+                padding: 10px 0;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .portfolio-box img {
+                height: 200px;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+
+            .btn-lg {
+                width: 100%;
+                margin-bottom: 10px;
+                margin-right: 0 !important;
+            }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- القائمة العلوية (Navbar) -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main:home' %}">
+                {% if site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="مؤسسة نجمة الإبداع" class="logo-img">
+                {% else %}
+                <img src="{% static 'logo.png' %}" alt="مؤسسة نجمة الإبداع" class="logo-img">
+                {% endif %}
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'main:home' %}">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'main:about' %}">من نحن</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'main:services' %}">خدماتنا</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'main:portfolio' %}">أعمالنا</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'main:testimonials' %}">التقييمات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'main:faq' %}">الأسئلة الشائعة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'main:contact' %}">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <main>
+        {% if messages %}
+        <div class="container mt-4">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 footer-section mb-4">
+                    <h5>عن المؤسسة</h5>
+                    <p>مؤسسة نجمة الإبداع متخصصة في تركيب وتوريد جميع أنواع زجاج السكريت بأعلى جودة واحترافية.</p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-section mb-4">
+                    <h5>الروابط السريعة</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'main:home' %}">الرئيسية</a></li>
+                        <li><a href="{% url 'main:about' %}">من نحن</a></li>
+                        <li><a href="{% url 'main:services' %}">الخدمات</a></li>
+                        <li><a href="{% url 'main:portfolio' %}">الأعمال</a></li>
+                        <li><a href="{% url 'main:contact' %}">التواصل</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-section mb-4">
+                    <h5>معلومات التواصل</h5>
+                    <p>
+                        <i class="fas fa-phone-alt text-yellow"></i>
+                        <a href="tel:{{ site_settings.phone }}" class="text-decoration-none">{{ site_settings.phone }}</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt text-yellow"></i>
+                        {{ site_settings.address }}
+                    </p>
+                    {% if site_settings.email %}
+                    <p>
+                        <i class="fas fa-envelope text-yellow"></i>
+                        <a href="mailto:{{ site_settings.email }}" class="text-decoration-none">{{ site_settings.email
+                        }}</a>
+                    </p>
+                    {% endif %}
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-section mb-4">
+                    <h5>تابعنا</h5>
+                    <div class="social-icons">
+                        {% if site_settings.facebook %}
+                        <a href="{{ site_settings.facebook }}" target="_blank" title="فيسبوك">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_settings.instagram %}
+                        <a href="{{ site_settings.instagram }}" target="_blank" title="إنستجرام">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_settings.twitter %}
+                        <a href="{{ site_settings.twitter }}" target="_blank" title="تويتر">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border-color: var(--light-gray); margin: 30px 0;">
+
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2026 مؤسسة نجمة الإبداع. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p>تم التطوير بواسطة <a href="https://wa.me/967773805866" target="_blank"
+                            class="text-yellow text-decoration-none">م /أنس صلاح</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر الواتساب العائم -->
+    <a href="https://wa.me/{{ site_settings.whatsapp }}" class="whatsapp-float" target="_blank"
+        title="تواصل معنا عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- سكربت بوتستراب -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS - Animate On Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        // تهيئة AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

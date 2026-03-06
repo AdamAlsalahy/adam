@@ -1,0 +1,193 @@
+{% extends 'main/base.html' %}
+
+{% block title %}خدماتنا - مؤسسة نجمة الإبداع{% endblock %}
+
+{% block meta_description %}تعرف على جميع خدمات مؤسسة نجمة الإبداع في تركيب وتوريد الزجاج السكريت.{% endblock %}
+
+{% block content %}
+
+<!-- قسم البطل -->
+<div class="hero-section">
+    <div class="container">
+        <h1 class="text-yellow fw-bold mb-4">خدماتنا المتميزة</h1>
+        <p class="lead fs-3">نقدم حلول زجاج شاملة وعالية الجودة</p>
+    </div>
+</div>
+
+<!-- قسم الخدمات الرئيسية -->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="service-box" style="height: auto; min-height: 300px;">
+                    <i class="fas fa-check" style="font-size: 3rem;"></i>
+                    <h4>{{ service.title }}</h4>
+                    <p>{{ service.description }}</p>
+                    <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank" class="btn btn-sm btn-yellow mt-3">
+                        <i class="fab fa-whatsapp me-1"></i> استفسر الآن
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">سيتم إضافة الخدمات قريباً...</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- قسم الخدمات الإضافية -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">خدمات إضافية</h2>
+        <div class="row">
+            <div class="col-lg-6 mb-4" data-aos="fade-up">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-tools text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">الصيانة والإصلاح</h5>
+                        <p>نقدم خدمات صيانة دورية وإصلاح سريع لجميع أنواع الزجاج.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-pencil-ruler text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">الاستشارات التصميمية</h5>
+                        <p>استشارات مجانية من خبرائنا لاختيار أفضل حل لمشروعك.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-truck text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">التوصيل والتركيب</h5>
+                        <p>خدمة توصيل سريعة وتركيب احترافي في جميع أنحاء المنطقة.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="d-flex">
+                    <div style="flex-shrink: 0; margin-left: 20px;">
+                        <i class="fas fa-shield-alt text-yellow" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow fw-bold">الضمان الشامل</h5>
+                        <p>ضمان شامل على جميع المنتجات والخدمات لمدة محددة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم عملية العمل -->
+<div class="section">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">كيف نعمل؟</h2>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4 text-center" data-aos="fade-up">
+                <div style="background-color: var(--dark-gray); padding: 30px; border-radius: 12px; border: 2px solid var(--main-yellow);">
+                    <div style="width: 60px; height: 60px; background-color: var(--main-yellow); color: var(--main-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 15px;">
+                        1
+                    </div>
+                    <h5 class="text-yellow fw-bold">التواصل</h5>
+                    <p>تواصل معنا وحدثنا عن احتياجاتك</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 text-center" data-aos="fade-up" data-aos-delay="100">
+                <div style="background-color: var(--dark-gray); padding: 30px; border-radius: 12px; border: 2px solid var(--main-yellow);">
+                    <div style="width: 60px; height: 60px; background-color: var(--main-yellow); color: var(--main-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 15px;">
+                        2
+                    </div>
+                    <h5 class="text-yellow fw-bold">الاستشارة</h5>
+                    <p>نقدم استشارة مجانية وتسعيرة دقيقة</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 text-center" data-aos="fade-up" data-aos-delay="200">
+                <div style="background-color: var(--dark-gray); padding: 30px; border-radius: 12px; border: 2px solid var(--main-yellow);">
+                    <div style="width: 60px; height: 60px; background-color: var(--main-yellow); color: var(--main-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 15px;">
+                        3
+                    </div>
+                    <h5 class="text-yellow fw-bold">التنفيذ</h5>
+                    <p>نقوم بالتوصيل والتركيب بكل احترافية</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 text-center" data-aos="fade-up" data-aos-delay="300">
+                <div style="background-color: var(--dark-gray); padding: 30px; border-radius: 12px; border: 2px solid var(--main-yellow);">
+                    <div style="width: 60px; height: 60px; background-color: var(--main-yellow); color: var(--main-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 15px;">
+                        4
+                    </div>
+                    <h5 class="text-yellow fw-bold">المتابعة</h5>
+                    <p>نتابع معك بعد الانتهاء لضمان رضاك</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم الأسعار -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">نموذج الأسعار</h2>
+        <p class="text-center mb-5" style="color: #ddd; font-size: 1.1rem;">
+            أسعارنا تنافسية وتعتمد على نوع المشروع والحجم والمواد المستخدمة. 
+            تواصل معنا للحصول على تسعيرة مخصصة لمشروعك.
+        </p>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                <div style="background-color: var(--light-gray); padding: 30px; border-radius: 12px; border: 2px solid var(--main-yellow); text-align: center;">
+                    <h5 class="text-yellow fw-bold mb-3">استشارة مجانية</h5>
+                    <p class="mb-3">استشارة تصميمية مجانية من خبرائنا</p>
+                    <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank" class="btn btn-sm btn-yellow">
+                        اطلب الآن
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div style="background-color: var(--light-gray); padding: 30px; border-radius: 12px; border: 2px solid var(--main-yellow); text-align: center;">
+                    <h5 class="text-yellow fw-bold mb-3">تسعيرة مخصصة</h5>
+                    <p class="mb-3">تسعيرة دقيقة حسب احتياجات مشروعك</p>
+                    <a href="{% url 'main:contact' %}" class="btn btn-sm btn-yellow">
+                        اطلب الآن
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div style="background-color: var(--light-gray); padding: 30px; border-radius: 12px; border: 2px solid var(--main-yellow); text-align: center;">
+                    <h5 class="text-yellow fw-bold mb-3">عرض خاص</h5>
+                    <p class="mb-3">عروض خاصة للعملاء الجدد والمشاريع الكبيرة</p>
+                    <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank" class="btn btn-sm btn-yellow">
+                        اطلب الآن
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم الدعوة للعمل -->
+<div class="section">
+    <div class="container text-center">
+        <h2 class="section-title text-yellow mb-5">هل تريد خدماتنا؟</h2>
+        <p class="fs-5 mb-5" style="color: #ddd;">تواصل معنا اليوم واحصل على استشارة مجانية وتسعيرة خاصة</p>
+        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank" class="btn btn-yellow btn-lg px-5 py-3 fs-5 me-3">
+            <i class="fab fa-whatsapp me-2"></i> واتساب
+        </a>
+        <a href="{% url 'main:contact' %}" class="btn btn-outline-warning btn-lg px-5 py-3 fs-5">
+            <i class="fas fa-phone-alt me-2"></i> اتصل بنا
+        </a>
+    </div>
+</div>
+
+{% endblock %}

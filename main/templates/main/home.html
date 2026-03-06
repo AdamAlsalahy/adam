@@ -1,0 +1,233 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}مؤسسة نجمة الإبداع | زجاج السعودية | زجاج سكريت خميس مشيط{% endblock %}
+
+{% block meta_description %}نجمة الإبداع هي رائدة مجال زجاج السعودية وزجاج خميس مشيط. نقدم خدمات تركيب زجاج سكريت،
+واجهات زجاجية، سواتر، وأبواب زجاجية بأعلى جودة وضمان.{% endblock %}
+
+{% block content %}
+
+<!-- قسم البطل (Hero Section) -->
+<div class="hero-section">
+    <div class="container">
+        <h1 class="text-yellow fw-bold mb-4" data-aos="fade-up">مؤسسة نجمة الإبداع</h1>
+        <p class="lead fs-3 mb-5" data-aos="fade-up" data-aos-delay="100">لتركيب وتوريد جميع أنواع زجاج السكريت</p>
+        <p class="mb-5" data-aos="fade-up" data-aos-delay="200" style="color: #ddd; font-size: 1.1rem;">
+            نحن متخصصون في تقديم حلول زجاج عالية الجودة مع تركيب احترافي وخدمة عملاء متميزة
+        </p>
+        <div data-aos="fade-up" data-aos-delay="300">
+            <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+                class="btn btn-yellow btn-lg px-5 py-3 fs-5 me-3">
+                <i class="fab fa-whatsapp me-2"></i> اطلب تسعيرة الآن
+            </a>
+            <a href="{% url 'main:contact' %}" class="btn btn-outline-warning btn-lg px-5 py-3 fs-5">
+                <i class="fas fa-envelope me-2"></i> تواصل معنا
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- قسم نبذة عن المؤسسة -->
+<div class="section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                <h2 class="text-yellow fw-bold mb-4">نبذة عن مؤسسة نجمة الإبداع</h2>
+                <p class="mb-3">
+                    مؤسسة نجمة الإبداع هي شريككم الموثوق في عالم الزجاج السكريت. نحن متخصصون في تقديم حلول متكاملة تشمل
+                    التصميم، التوريد، والتركيب بأعلى معايير الجودة العالمية.
+                </p>
+                <p class="mb-3">
+                    خبرتنا التي تمتد لأكثر من 15 عاماً تجعلنا الخيار الأول للمشاريع السكنية والتجارية التي تتطلب دقة
+                    متناهية وإتقان في العمل.
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'main:about' %}" class="btn btn-outline-warning px-4 py-2">
+                        اقرأ المزيد عنّا <i class="fas fa-arrow-left ms-2"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center" data-aos="fade-left">
+                {% if site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="مؤسسة نجمة الإبداع" class="img-fluid"
+                    style="max-width: 350px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                {% else %}
+                <img src="{% static 'logo.png' %}" alt="مؤسسة نجمة الإبداع" class="img-fluid"
+                    style="max-width: 350px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- قسم الخدمات -->
+<div class="section">
+    <div class="container">
+        <h2 class="section-title text-yellow">خدماتنا المتميزة</h2>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="service-box text-center">
+                    <i class="fas fa-check"></i>
+                    <h4>{{ service.title }}</h4>
+                    <p>{{ service.description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">سيتم إضافة الخدمات قريباً...</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- قسم نماذج الأعمال -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow">نماذج من أعمالنا</h2>
+        <div class="row">
+            {% for item in portfolios %}
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="portfolio-box">
+                    <div style="position: relative; overflow: hidden;">
+                        {% if item.video %}
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}"
+                            style="width: 100%; height: 250px; object-fit: cover;" loading="lazy">
+                        {% else %}
+                        <img src="/media/portfolio/images/video_poster_1.png" alt="{{ item.title }}"
+                            style="width: 100%; height: 250px; object-fit: cover;" loading="lazy">
+                        {% endif %}
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; transition: 0.3s ease;"
+                            class="video-overlay">
+                            <a href="{{ item.video.url }}" target="_blank"
+                                style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background-color: var(--main-yellow); border-radius: 50%; text-decoration: none; transition: 0.3s ease;"
+                                class="play-button" aria-label="شغل الفيديو">
+                                <i class="fas fa-play"
+                                    style="color: var(--main-black); font-size: 24px; margin-right: 4px;"></i>
+                            </a>
+                        </div>
+                        {% elif item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}"
+                            style="width: 100%; height: 250px; object-fit: cover;" loading="lazy">
+                        {% else %}
+                        <div
+                            style="width: 100%; height: 250px; background-color: var(--light-gray); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-image" style="font-size: 3rem; color: var(--main-yellow);"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="content">
+                        {% if item.title %}
+                        <h5 class="text-yellow fw-bold">{{ item.title }}</h5>
+                        {% endif %}
+                        {% if item.description %}
+                        <p class="text-muted small">{{ item.description|truncatewords:15 }}</p>
+                        {% endif %}
+                        <div class="mt-3">
+                            {% if item.video %}
+                            <a href="{{ item.video.url }}" target="_blank" class="btn btn-sm btn-outline-warning me-2">
+                                <i class="fas fa-play"></i> مشاهدة
+                            </a>
+                            {% endif %}
+                            <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+                                class="btn btn-sm btn-yellow">
+                                <i class="fab fa-whatsapp"></i> استفسار
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">سيتم إضافة نماذج الأعمال قريباً...</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'main:portfolio' %}" class="btn btn-yellow btn-lg px-5">
+                <i class="fas fa-images me-2"></i> عرض جميع الأعمال
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- قسم التقييمات -->
+{% if testimonials %}
+<div class="section">
+    <div class="container">
+        <h2 class="section-title text-yellow">آراء عملائنا</h2>
+        <p class="text-center mb-5 fs-5" style="color: #ddd;">نفتخر بثقة أكثر من 1000 عميل في منطقة عسير</p>
+        <div class="row">
+            {% for testimonial in testimonials %}
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="testimonial-box h-100">
+                    <div class="stars mb-3">
+                        {% for i in "x"|rjust:testimonial.rating %}
+                        <i class="fas fa-star" style="color: var(--main-yellow);"></i>
+                        {% endfor %}
+                    </div>
+                    <p class="mb-4" style="font-style: italic; color: #ddd;">"{{ testimonial.message }}"</p>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="ms-3">
+                            <h6 class="mb-0 text-yellow fw-bold">{{ testimonial.client_name }}</h6>
+                            {% if testimonial.client_company %}
+                            <small class="text-muted">{{ testimonial.client_company }}</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'main:testimonials' %}" class="btn btn-outline-warning px-4 py-2">
+                عرض جميع التقييمات <i class="fas fa-comments ms-2"></i>
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- قسم الإحصائيات -->
+<div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">+1000</h3>
+                <p>مشروع منجز</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">+1000</h3>
+                <p>عميل راضي</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">15+</h3>
+                <p>سنة خبرة</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">100%</h3>
+                <p>جودة واتقان</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم الدعوة للعمل (CTA) -->
+<div class="section">
+    <div class="container text-center">
+        <h2 class="section-title text-yellow mb-5">هل أنت مهتم بخدماتنا؟</h2>
+        <p class="fs-5 mb-5" style="color: #ddd;">تواصل معنا اليوم واحصل على استشارة مجانية وتسعيرة خاصة لمشروعك</p>
+        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+            class="btn btn-yellow btn-lg px-5 py-3 fs-5">
+            <i class="fab fa-whatsapp me-2"></i> تواصل معنا الآن
+        </a>
+    </div>
+</div>
+
+{% endblock %}
